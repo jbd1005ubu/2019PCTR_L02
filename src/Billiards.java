@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Billiards extends JFrame {
@@ -61,8 +62,13 @@ public class Billiards extends JFrame {
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Code is executed when start button is pushed
-
+            ArrayList<BallThread> ballThreads = new ArrayList<>();
+            for(Ball b: balls){
+                ballThreads.add(new BallThread(b));
+            }
+            for(BallThread bT: ballThreads){
+                bT.run();
+            }
 		}
 	}
 
