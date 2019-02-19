@@ -60,6 +60,7 @@ public class Billiards extends JFrame {
 		balls = new Ball[N_BALL];
 		for(int i = 0; i < N_BALL; i++){
 		    balls[i] = new Ball();
+		    balls[i].move();
         }
 	}
 
@@ -73,7 +74,7 @@ public class Billiards extends JFrame {
 				}
 			}
 			if(needNewBalls){
-				hasBeenStopped = true;
+				stopCurrentThreads();
 				initBalls();
 			}
 		    if(hasBeenStopped) {
@@ -95,12 +96,16 @@ public class Billiards extends JFrame {
 	private class StopListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			for(BallThread bT: ballThreads){
-				bT.interrupt();
-			}
-			boardThread.interrupt();
-			hasBeenStopped = true;
+			stopCurrentThreads();
 		}
+	}
+
+	private void stopCurrentThreads(){
+		for(BallThread bT: ballThreads){
+			bT.interrupt();
+		}
+		boardThread.interrupt();
+		hasBeenStopped = true;
 	}
 
 	public static void main(String[] args) {
