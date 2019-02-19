@@ -22,6 +22,9 @@ public class Billiards extends JFrame {
 	private final int N_BALL = 5;
 	private Ball[] balls;
 
+    private ArrayList<BallThread> ballThreads;
+    private BoardThread boardThread;
+
 	public Billiards() {
 
 		board = new Board();
@@ -62,7 +65,7 @@ public class Billiards extends JFrame {
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-            ArrayList<BallThread> ballThreads = new ArrayList<>();
+            ballThreads = new ArrayList<>();
             for(Ball b: balls){
                 ballThreads.add(new BallThread(b));
             }
@@ -70,7 +73,7 @@ public class Billiards extends JFrame {
                 bT.start();
             }
             board.setBalls(balls);
-			BoardThread boardThread = new BoardThread(board);
+			boardThread = new BoardThread(board);
 			boardThread.start();
 		}
 	}
