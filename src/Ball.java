@@ -12,12 +12,12 @@ public class Ball {
 	public Ball() {
 		ImageIcon ii = new ImageIcon(this.getClass().getResource(Ball));
 		image = ii.getImage();
-		
-		//TODO Depend of image size
+
 		IMG_TAM_X = 32;
 		IMG_TAM_Y = 32;
 
-		
+		image = image.getScaledInstance(32, 32, Image.SCALE_DEFAULT);
+
 		x = Billiards.Width/4-16;
 		y = Billiards.Height/2-16;
 		v = 5;
@@ -36,7 +36,6 @@ public class Ball {
 		y += dy;
 		
 		reflect();
-		
 		//TODO Check postcondition
 	}
 
