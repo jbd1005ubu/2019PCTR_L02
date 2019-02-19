@@ -66,12 +66,22 @@ public class Billiards extends JFrame {
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			boolean needNewBalls = true;
+			for (Ball b : balls) {
+				if(b.getdr() != 0){
+					needNewBalls = false;
+				}
+			}
+			if(needNewBalls){
+				hasBeenStopped = true;
+				initBalls();
+			}
 		    if(hasBeenStopped) {
 		        hasBeenStopped = false;
                 ballThreads = new ArrayList<>();
                 for (Ball b : balls) {
-                    ballThreads.add(new BallThread(b));
-                }
+					ballThreads.add(new BallThread(b));
+				}
                 for (BallThread bT : ballThreads) {
                     bT.start();
                 }
