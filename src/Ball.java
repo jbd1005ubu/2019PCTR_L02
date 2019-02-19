@@ -36,7 +36,7 @@ public class Ball {
 		y += dy;
 		
 		reflect();
-		//TODO Check postcondition
+        assert Math.abs(y - IMG_TAM_Y) > 0 && Math.abs(x - IMG_TAM_X) > 0 && Math.abs(y + IMG_TAM_Y) < Board.BOTTOMBOARD && Math.abs(x + IMG_TAM_X) < Board.RIGHTBOARD;
 	}
 
 	private void reflect() {
