@@ -69,6 +69,9 @@ public class Billiards extends JFrame {
             for(BallThread bT: ballThreads){
                 bT.start();
             }
+            board.setBalls(balls);
+			BoardThread boardThread = new BoardThread(board);
+			boardThread.start();
 		}
 	}
 
