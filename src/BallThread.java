@@ -1,4 +1,4 @@
-public class BallThread implements Runnable {
+public class BallThread extends Thread {
 
     private Ball ball;
 
